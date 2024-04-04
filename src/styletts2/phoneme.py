@@ -8,15 +8,15 @@ class PhonemeConverter:
 
 
 class GruutPhonemizer(PhonemeConverter):
-    def phonemize(self, text, lang='en-us'):
+    def phonemize(self, text, lang="pt-br"):
         phonemized = []
         for sent in sentences(text, lang=lang):
             for word in sent:
                 if isinstance(word.phonemes, Iterable):
-                    phonemized.append(''.join(word.phonemes))
+                    phonemized.append("".join(word.phonemes))
                 elif isinstance(word.phonemes, str):
                     phonemized.append(word.phonemes)
-        phonemized_text = ' '.join(phonemized)
+        phonemized_text = " ".join(phonemized)
         return phonemized_text
 
 
@@ -28,7 +28,7 @@ class GruutPhonemizer(PhonemeConverter):
 class PhonemeConverterFactory:
     @staticmethod
     def load_phoneme_converter(name: str, **kwargs):
-        if name == 'gruut':
+        if name == "gruut":
             return GruutPhonemizer()
         else:
             raise ValueError("Invalid phoneme converter.")
